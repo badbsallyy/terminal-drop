@@ -1,0 +1,24 @@
+
+> terminaldrop@0.1.0 dev
+> next dev
+
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.2:3000
+- Environments: .env.local
+
+✓ Starting...
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+✓ Ready in 1084ms
+ POST /api/upload 200 in 1101ms (compile: 1052ms, render: 49ms)
+ GET /2h6q 200 in 1051ms (compile: 1033ms, render: 18ms)
+ POST /api/upload 200 in 17ms (compile: 4ms, render: 13ms)
+ HEAD /pckj 200 in 25ms (compile: 15ms, render: 10ms)
+ GET /pckj 200 in 13ms (compile: 3ms, render: 9ms)
+○ Compiling / ...
+ GET / 200 in 5.4s (compile: 5.0s, render: 384ms)
+ POST /api/upload 200 in 22ms (compile: 4ms, render: 18ms)
