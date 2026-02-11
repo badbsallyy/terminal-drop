@@ -23,12 +23,12 @@ export class LocalStorage implements IStorage {
     return path.join(FILES_DIR, id)
   }
 
-  async saveItem(id: string, item: StoredItem, ttl: number): Promise<void> {
+  async saveItem(id: string, item: StoredItem): Promise<void> {
     await ensureDir()
     await fs.writeFile(this.getMetaPath(id), JSON.stringify(item))
   }
 
-  async saveFile(id: string, file: File, ttl: number): Promise<string> {
+  async saveFile(id: string, file: File): Promise<string> {
     await ensureDir()
     const buffer = Buffer.from(await file.arrayBuffer())
     const filePath = this.getFilePath(id)
@@ -47,8 +47,11 @@ export class LocalStorage implements IStorage {
         return null
       }
       return item
-    } catch (error: any) {
-      if (error.code === 'ENOENT') return null
+    } catch (error) {
+      // Type guard for Node.js filesystem errors
+      if (error && typeof error === 'object' && 'code' in error && (error as { code: string }).code === 'ENOENT') {
+        return null
+      }
       throw error
     }
   }

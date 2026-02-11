@@ -32,7 +32,7 @@ export function SuccessDisplay({ result, onReset }: SuccessDisplayProps) {
         setTimeout(() => setCopiedCurl(false), 2000)
       }
       toast.success("Copied to clipboard!")
-    } catch (err) {
+    } catch {
       toast.error("Failed to copy")
     }
   }
