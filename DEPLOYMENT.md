@@ -30,7 +30,7 @@ All items below have been verified and are ready:
 1. Go to [Vercel Dashboard](https://vercel.com/dashboard)
 2. Click "Add New Project"
 3. Import your GitHub repository: `badbsallyy/terminal-drop`
-4. Vercel will automatically detect the `vercel.json` configuration
+4. Vercel will automatically detect the `vercel.json` configuration and use the `terminaldrop` subdirectory
 
 ### 2. Configure Environment Variables
 
@@ -60,9 +60,10 @@ NEXT_PUBLIC_BASE_URL=https://your-project-name.vercel.app
 ### 4. Deploy
 
 Click "Deploy" - Vercel will:
-1. Run `cd terminaldrop && npm install`
-2. Run `npm run build`
-3. Deploy the production build
+1. Change to the `terminaldrop` directory (via `rootDirectory` setting)
+2. Run `npm install`
+3. Run `npm run build`
+4. Deploy the production build
 
 ### 5. Verify Deployment
 
@@ -79,7 +80,7 @@ After deployment, test the following:
 ### Build Fails
 - Check that environment variables are set
 - Verify build logs in Vercel dashboard
-- Ensure `vercel.json` points to correct directory
+- Ensure `vercel.json` has `rootDirectory` set to `terminaldrop` (required for subdirectory deployment)
 
 ### Storage Issues
 - Verify KV and Blob integrations are connected

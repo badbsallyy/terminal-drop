@@ -1,6 +1,7 @@
 {
-  "buildCommand": "cd terminaldrop && npm install && npm run build",
-  "outputDirectory": "terminaldrop/.next",
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
   "framework": "nextjs",
-  "installCommand": "cd terminaldrop && npm install"
+  "installCommand": "npm install",
+  "rootDirectory": "terminaldrop"
 }
