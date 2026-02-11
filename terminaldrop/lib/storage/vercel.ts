@@ -7,7 +7,7 @@ export class VercelStorage implements IStorage {
     await kv.set(id, item, { ex: ttl })
   }
 
-  async saveFile(id: string, file: File, ttl: number): Promise<string> {
+  async saveFile(id: string, file: File): Promise<string> {
     // We use the ID as the blob path to ensure uniqueness.
     // We could append extension if needed, but we store MIME type in metadata.
     const blob = await put(id, file, { access: 'public' })

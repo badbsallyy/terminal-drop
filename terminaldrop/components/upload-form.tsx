@@ -16,7 +16,7 @@ export function UploadForm() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [ttl, setTtl] = useState(DEFAULT_TTL.toString())
   const [loading, setLoading] = useState(false)
-  const [result, setResult] = useState<any>(null)
+  const [result, setResult] = useState<{ url: string; curl: string; id: string; type: string } | null>(null)
 
   const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value
@@ -68,9 +68,9 @@ export function UploadForm() {
 
       setResult(data)
       toast.success('Dropped successfully!')
-    } catch (err: any) {
+    } catch (err) {
       console.error(err)
-      toast.error(err.message || 'Something went wrong')
+      toast.error(err instanceof Error ? err.message : 'Something went wrong')
     } finally {
       setLoading(false)
     }

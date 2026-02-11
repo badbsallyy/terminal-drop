@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { storage } from '@/lib/storage'
 import fs from 'fs'
-import path from 'path'
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params

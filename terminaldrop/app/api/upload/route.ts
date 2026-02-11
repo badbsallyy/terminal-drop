@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { storage } from '@/lib/storage'
 import { generateId } from '@/lib/id-generator'
 import { MAX_FILE_SIZE, MAX_TEXT_LENGTH, BASE_URL } from '@/lib/constants'
+import { ItemMetadata } from '@/lib/storage/types'
 
 export async function POST(request: NextRequest) {
   try {
@@ -28,28 +29,26 @@ export async function POST(request: NextRequest) {
 
     let type: 'text' | 'url' | 'file' = 'text'
     let storedContent = ''
-    let metadata: any = { createdAt: Date.now(), expiresAt }
+    const metadata: ItemMetadata = { 
+      type: 'text',
+      createdAt: Date.now(), 
+      expiresAt 
+    }
 
     if (file) {
       type = 'file'
       storedContent = await storage.saveFile(id, file, ttl)
-      metadata = {
-        ...metadata,
-        type,
-        originalName: file.name,
-        mimeType: file.type,
-        size: file.size
-      }
+      metadata.type = type
+      metadata.originalName = file.name
+      metadata.mimeType = file.type
+      metadata.size = file.size
     } else if (content) {
       storedContent = content
       if (content.match(/^https?:\/\//)) {
         type = 'url'
       }
-      metadata = {
-        ...metadata,
-        type,
-        size: content.length
-      }
+      metadata.type = type
+      metadata.size = content.length
     }
 
     await storage.saveItem(id, { metadata, content: storedContent }, ttl)
