@@ -48,7 +48,10 @@ export class LocalStorage implements IStorage {
       }
       return item
     } catch (error) {
-      if (error instanceof Error && 'code' in error && error.code === 'ENOENT') return null
+      // Type guard for Node.js filesystem errors
+      if (error && typeof error === 'object' && 'code' in error && (error as { code: string }).code === 'ENOENT') {
+        return null
+      }
       throw error
     }
   }
